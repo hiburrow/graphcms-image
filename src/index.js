@@ -7,7 +7,7 @@ if (typeof window !== 'undefined') {
   require('intersection-observer')
 }
 
-const presetImageSizes = [
+export const presetImageSizes = [
   640,
   768,
   1024,

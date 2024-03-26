@@ -1,18 +1,11 @@
 import { expect } from 'chai';
 import { srcSet, constructURL, imgSizes } from '../src/Utils';
+import { presetImageSizes } from '../src/index.js';
 
 describe('Utils tests', () => {
   const timeout = 3000;
 
   test('should construct correct srcSet', async () => {
-    const presetImageSizes = [
-      640,
-      768,
-      1024,
-      1366,
-      1600,
-      1920,
-    ]
     const width = 1200;
     const constructedURL = constructURL('test', false, 'https://burrow.com');
     const widths = [...presetImageSizes, width];
