@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Img from './Img';
-import { srcSet, getWidths, constructURL, imgSizes } from './Utils';
+import { srcSet, constructURL, imgSizes, getFilteredPresetImageSizes } from './Utils';
 
 if (typeof window !== 'undefined') {
   require('intersection-observer')
@@ -156,7 +156,7 @@ class GraphImage extends React.Component {
       // construct srcSet if maxWidth provided
       const srcSetImgs = srcSet(
         srcBase,
-        getWidths(width, maxWidth),
+        getFilteredPresetImageSizes(width),
         fit,
         transforms
       );

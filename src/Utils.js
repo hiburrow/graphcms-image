@@ -1,12 +1,13 @@
-// responsiveness transforms
-const responsiveSizes = size => [
-  size / 4,
-  size / 2,
-  size,
-  size * 1.5,
-  size * 2,
-  size * 3
-];
+export const presetImageSizes = [
+  640,
+  768,
+  1024,
+  1366,
+  1600,
+  1920,
+  2560,
+  3840,
+]
 
 // check webp support
 let isWebpSupportedCache = null;
@@ -38,6 +39,11 @@ const constructURL = (handle, withWebp, baseURI) => resize => transforms =>
     handle
   ].join('/');
 
+const getFilteredPresetImageSizes = (width) => {
+  const sizes = presetImageSizes.filter(size => size < width);
+  return [...sizes, width]
+}
+
 const srcSet = (srcBase, srcWidths, fit, transforms) =>
   srcWidths
     .map(
@@ -48,16 +54,9 @@ const srcSet = (srcBase, srcWidths, fit, transforms) =>
     )
     .join(',\n');
 
-const getWidths = (width, maxWidth) => {
-  const sizes = responsiveSizes(maxWidth).filter(size => size < width);
-  // Add the original width to ensure the largest image possible
-  // is available for small images.
-  return [...sizes, width]
-};
-
 export {
   srcSet,
-  getWidths,
   constructURL,
   imgSizes,
+  getFilteredPresetImageSizes,
 }
