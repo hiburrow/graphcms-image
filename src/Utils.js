@@ -1,3 +1,14 @@
+export const presetImageSizes = [
+  640,
+  768,
+  1024,
+  1366,
+  1600,
+  1920,
+  2560,
+  3840,
+]
+
 // check webp support
 let isWebpSupportedCache = null;
 const isWebpSupported = () => {
@@ -28,6 +39,11 @@ const constructURL = (handle, withWebp, baseURI) => resize => transforms =>
     handle
   ].join('/');
 
+const getFilteredPresetImageSizes = (width) => {
+  const sizes = presetImageSizes.filter(size => size < width);
+  return [...sizes, width]
+}
+
 const srcSet = (srcBase, srcWidths, fit, transforms) =>
   srcWidths
     .map(
@@ -42,4 +58,5 @@ export {
   srcSet,
   constructURL,
   imgSizes,
+  getFilteredPresetImageSizes,
 }
