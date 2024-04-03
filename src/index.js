@@ -133,7 +133,8 @@ class GraphImage extends React.Component {
       blurryPlaceholder,
       backgroundColor,
       fadeIn,
-      baseURI
+      baseURI,
+      loading
     } = this.props;
 
     let {
@@ -198,6 +199,7 @@ class GraphImage extends React.Component {
                 src={thumbSrc}
                 opacity={this.state.imgLoaded ? 0 : 1}
                 transitionDelay="0.25s"
+                loading={loading}
               />
             )}
 
@@ -228,6 +230,7 @@ class GraphImage extends React.Component {
                 sizes={sizes}
                 opacity={this.state.imgLoaded || !fadeIn ? 1 : 0}
                 onLoad={this.onImageLoaded}
+                loading={loading}
               />
             )}
           </div>
@@ -253,7 +256,8 @@ GraphImage.defaultProps = {
   backgroundColor: '',
   fadeIn: true,
   onLoad: null,
-  baseURI: 'https://media.graphassets.com'
+  baseURI: 'https://media.graphassets.com',
+  loading: 'lazy',
 };
 
 GraphImage.propTypes = {
@@ -279,7 +283,8 @@ GraphImage.propTypes = {
   blurryPlaceholder: PropTypes.bool,
   backgroundColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   fadeIn: PropTypes.bool,
-  baseURI: PropTypes.string
+  baseURI: PropTypes.string,
+  loading: PropTypes.string
 };
 
 export default GraphImage

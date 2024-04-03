@@ -76,6 +76,7 @@
      * Base URI Defaults to `https://media.graphcms.com`
      */
     baseURI?: string
+    loading?: string
   }
 
   export default class GraphImage extends React.Component<GraphImageProps> {}
